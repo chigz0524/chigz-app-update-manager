@@ -1,46 +1,51 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>CHIGZ App Update Manager</title>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#090e1c">
+<title>CHIGZ | App Update Manager</title>
 <style>
-:root{font-family:system-ui,Segoe UI,sans-serif;color-scheme:dark;background:#080f21;color:#e7efff}*{box-sizing:border-box}
-body{margin:0}header{padding:32px max(24px,calc((100vw - 1100px)/2));border-bottom:1px solid #243654;background:#0d1830}
-h1{margin:0 0 8px;font-size:clamp(25px,4vw,38px)}p{color:#a7b7d1;line-height:1.5}
-main{max-width:1100px;margin:auto;padding:30px 24px}.top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px}
-button,a.action{border:1px solid #4d76be;background:#1a3769;color:#fff;padding:10px 15px;border-radius:9px;cursor:pointer;text-decoration:none;font-size:14px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(265px,1fr));gap:18px;margin-top:25px}
-article{background:#121e37;border:1px solid #2b3d60;border-radius:16px;padding:22px;min-height:220px}
-.id{font-size:12px;color:#91a7c9;overflow-wrap:anywhere}h2{font-size:20px;margin:14px 0 10px}
-.status{font-size:14px;color:#d3def1;min-height:56px}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
-a{color:#9cc4ff}.notice{border:1px solid #53658e;padding:14px 18px;border-radius:11px;margin-top:25px;color:#b6c6e5;background:#121e37}
-small{color:#91a7c9}footer{padding:28px;text-align:center;color:#91a7c9}
+:root{font-family:Inter,Segoe UI,system-ui,-apple-system,sans-serif;color:#ecf2ff;background:#080d19;font-synthesis:none}*{box-sizing:border-box}body{margin:0;min-height:100vh}button,input,a{font:inherit}a{color:inherit;text-decoration:none}button{cursor:pointer}
+.shell{display:grid;grid-template-columns:248px minmax(0,1fr);min-height:100vh}
+aside{background:#0c1425;border-right:1px solid #1e2b40;padding:26px 16px;display:flex;flex-direction:column;gap:32px}
+.brand{display:flex;align-items:center;gap:11px;font-size:16px;font-weight:800;letter-spacing:.25px;padding:0 8px}.mark{background:linear-gradient(135deg,#6979ff,#17c3c4);width:38px;height:38px;display:grid;place-items:center;border-radius:12px;font-weight:900;color:white}
+.section-label{font-size:10px;color:#7489ac;letter-spacing:1.5px;font-weight:800;padding:0 12px;margin-bottom:10px}
+.navitem{display:flex;align-items:center;gap:12px;padding:12px;border-radius:10px;color:#a6b7d2;font-size:13px}.navitem.active{background:#192b50;color:#dceaff}.navicon{font-size:17px}
+.sidebar-bottom{margin-top:auto;border:1px solid #263854;border-radius:14px;padding:15px;background:#101d35;font-size:12px;color:#94aacc;line-height:1.6}
+.online{display:inline-block;background:#30cb9b;width:7px;height:7px;border-radius:50%;margin-right:6px}
+main{min-width:0}.topbar{height:75px;padding:0 38px;border-bottom:1px solid #1b2840;display:flex;align-items:center;justify-content:space-between;gap:15px}.breadcrumb{font-size:12px;color:#91a5c4}.breadcrumb strong{color:#edf4ff}.top-actions{display:flex;align-items:center;gap:12px}.avatar{background:#314b85;color:white;border-radius:12px;width:34px;height:34px;display:grid;place-items:center;font-weight:800;font-size:12px}
+.content{max-width:1360px;margin:auto;padding:38px}.eyebrow{color:#7898d8;letter-spacing:2px;font-size:10px;font-weight:800}
+h1{font-size:clamp(25px,3.4vw,35px);letter-spacing:-1px;margin:8px 0 10px}.sub{color:#96a9c7;font-size:14px;margin:0;line-height:1.7}
+.hero{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:30px}.primary{border:1px solid #607ffc;background:#4165ee;border-radius:10px;padding:11px 17px;color:white;font-weight:650;font-size:13px}.secondary{border:1px solid #304462;background:#172640;color:#dce9ff;border-radius:10px;padding:10px 14px;font-size:13px}.secondary:focus-visible,.primary:focus-visible,.filter:focus-visible{outline:2px solid #8baaff;outline-offset:2px}
+.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:0 0 32px}.metric{background:linear-gradient(135deg,#121f37,#101a2e);border:1px solid #263754;border-radius:16px;padding:21px}.metric span{font-size:12px;color:#a5b9d6}.metric strong{display:block;font-size:31px;letter-spacing:-1px;margin-top:9px}.metric small{display:block;font-size:11px;color:#728bab;margin-top:5px}
+.section-header{display:flex;justify-content:space-between;gap:12px;align-items:end;margin-bottom:17px}.section-header h2{font-size:19px;margin:0 0 6px}.section-header p{margin:0;color:#8199b8;font-size:12px}
+.toolbar{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:19px}.search{flex:1;min-width:210px;background:#111d32;border:1px solid #2a3d5c;border-radius:11px;padding:11px 14px;color:white;outline:none}.search:focus{border-color:#6e8af0}.filter{border:1px solid #30415d;border-radius:10px;background:#111c30;color:#a4b8d7;padding:10px 16px;font-size:12px}.filter.selected{background:#213966;border-color:#416ad0;color:#f0f5ff}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}.app{min-width:0;background:#111c30;border:1px solid #293b58;border-radius:16px;padding:21px;display:flex;flex-direction:column;gap:17px;min-height:245px;transition:border-color .2s,transform .2s}.app:hover{border-color:#526b99;transform:translateY(-2px)}
+.app-head{display:flex;align-items:center;gap:12px}.app-icon{width:44px;height:44px;border-radius:12px;background:#263e73;display:grid;place-items:center;color:#b6d6ff;font-size:19px;font-weight:700;flex-shrink:0}.app h3{font-size:15px;margin:0 0 5px;overflow-wrap:anywhere}.app-id{font-size:10px;color:#7e94b7;overflow-wrap:anywhere}.pill{font-size:10px;border-radius:30px;padding:5px 9px;border:1px solid #2b695a;background:#0f352e;color:#77e6b6;white-space:nowrap}.pill.missing{border-color:#3b4a61;background:#222d42;color:#a8b6ca}.app-middle{font-size:12px;color:#b6c8e3;min-height:38px;line-height:1.8}.app-footer{display:flex;gap:8px;margin-top:auto;flex-wrap:wrap}.app-footer button,.app-footer a{border:1px solid #39527c;padding:9px 13px;background:#192e52;border-radius:8px;font-size:12px;color:#e1edff}.app-footer button:disabled{cursor:not-allowed;opacity:.48}
+.note{border:1px solid #2d405c;border-radius:14px;padding:18px 21px;color:#8fa5c4;font-size:12px;line-height:1.7;margin-top:32px;background:#101b30}
+footer{padding:25px 38px;color:#637b9d;font-size:11px;border-top:1px solid #1a2840;display:flex;justify-content:space-between;gap:12px}
+dialog{max-width:540px;width:calc(100% - 30px);background:#111e34;border:1px solid #45608d;color:#eaf2ff;border-radius:17px;padding:24px;box-shadow:0 30px 100px #0009}dialog::backdrop{background:#030814d9}dialog h2{margin:0 0 8px}dialog p{font-size:13px;color:#9ab0d0;line-height:1.5}dialog ul{padding-left:19px;line-height:2}dialog a{color:#9ac8ff;text-decoration:underline;overflow-wrap:anywhere}.modal-head{display:flex;justify-content:space-between;gap:16px;align-items:center}.close{background:transparent;border:1px solid #4a5e7d;color:#fff;border-radius:8px;padding:7px 11px}.empty{grid-column:1/-1;text-align:center;color:#92a7c7;padding:50px;border:1px dashed #344664;border-radius:13px}
+@media(max-width:1100px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.content{padding:28px}.topbar{padding:0 28px}}@media(max-width:740px){.shell{display:block}aside{padding:14px 20px;border-right:0;border-bottom:1px solid #23334c;gap:0}.brand{font-size:14px}aside nav,aside .sidebar-bottom{display:none}.topbar{height:52px;padding:0 18px}.content{padding:25px 18px}.hero{align-items:flex-start;flex-direction:column}.metrics{gap:8px}.metric{padding:14px}.metric strong{font-size:23px}.metric span{font-size:10px}.grid{grid-template-columns:1fr}.section-header{align-items:start;flex-direction:column}footer{padding:20px;flex-direction:column}}
 </style></head>
-<body><header><h1>CHIGZ APP UPDATE MANAGER</h1><p>Centralized release status for Android and Windows applications</p></header>
-<main><div class="top"><div><h2>Applications</h2><small>Public release monitor — no admin upload controls</small></div><button id="refresh">Refresh status</button></div>
-<div id="apps" class="grid" aria-live="polite"><p>Loading applications…</p></div>
-<div class="notice">Release management: publish verified signed APK and Windows installer files using GitHub Releases. This public page does not accept file uploads or expose credentials. Android installation requires confirmation; Windows self-signed installers may display security warnings.</div>
-</main><footer>CHIGZ App Update Manager</footer>
+<body><div class="shell"><aside><div class="brand"><span class="mark">C</span><span>CHIGZ <span style="color:#8ea8d4">/ Update Manager</span></span></div><nav><div class="section-label">WORKSPACE</div><a class="navitem active" href="/"><span class="navicon">▦</span> Overview</a><a class="navitem" href="#applications"><span class="navicon">▤</span> Applications</a><a class="navitem" href="https://github.com/chigz0524/chigz-app-update-manager" target="_blank" rel="noopener noreferrer"><span class="navicon">↗</span> GitHub repository</a><div class="section-label" style="margin-top:32px">RESOURCES</div><a class="navitem" href="/api/apps" target="_blank"><span class="navicon">⌁</span> Public API</a></nav><div class="sidebar-bottom"><span class="online"></span> Public update monitor<br>Release files are hosted in GitHub Releases. No admin secrets are stored here.</div></aside>
+<main><div class="topbar"><div class="breadcrumb">Workspace <span style="color:#526782"> / </span> <strong>Overview</strong></div><div class="top-actions"><span style="color:#89a0c2;font-size:12px">Public release portal</span><span class="avatar">CZ</span></div></div>
+<div class="content"><section class="hero"><div><div class="eyebrow">APPLICATION DISTRIBUTION</div><h1>App Update Dashboard</h1><p class="sub">Manage visibility of your app releases in one place.<br>See the latest Android and Windows downloads published to GitHub.</p></div><button class="primary" id="refreshTop">↻ &nbsp; Refresh releases</button></section>
+<section class="metrics" aria-label="Release statistics"><div class="metric"><span>Total applications</span><strong id="countApps">—</strong><small>Registered in the directory</small></div><div class="metric"><span>Published releases</span><strong id="countPublished">—</strong><small>Apps with a latest release</small></div><div class="metric"><span>Installable files</span><strong id="countAssets">—</strong><small>APK and EXE release assets</small></div></section>
+<section id="applications"><div class="section-header"><div><h2>Application Library</h2><p>Browse and download verified release listings.</p></div><span style="color:#8ea9ce;font-size:12px" id="lastChecked">Loading…</span></div><div class="toolbar"><input id="search" class="search" type="search" placeholder="⌕  Search applications..." aria-label="Search applications"><button class="filter selected" data-filter="all">All apps</button><button class="filter" data-filter="released">Released</button><button class="filter" data-filter="pending">Pending</button></div><div class="grid" id="grid" aria-live="polite"><div class="empty">Loading your applications…</div></div></section>
+<div class="note"><strong style="color:#dae8ff">About updates</strong><br>This website is a public release viewer. App registration currently happens in <code>config/apps.json</code> on GitHub; release publishing happens in each app's GitHub Releases repository. The installed APK/EXE needs a separate signed and verified update installer to perform in-app updates. Never upload signing keys or passwords.</div>
+</div><footer><span>© CHIGZ App Update Manager</span><span>Powered by GitHub Releases &amp; Vercel</span></footer></main></div>
+<dialog id="details"><div class="modal-head"><h2 id="dialogTitle">Release details</h2><button class="close" id="closeDialog">Close</button></div><p id="dialogInfo"></p><div id="dialogLinks"></div></dialog>
 <script>
-const root=document.getElementById('apps');
-async function request(url){const r=await fetch(url,{cache:'no-store'});const data=await r.json();return {ok:r.ok,data};}
-function el(tag,cls,text){const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;}
-async function show(){
- root.replaceChildren(el('p','','Loading applications…'));
- try{
- const response=await request('/api/apps');
- if(!response.ok||!Array.isArray(response.data.apps))throw Error('App registry unavailable');
- root.replaceChildren();
- await Promise.all(response.data.apps.map(async app=>{
- const card=el('article');card.append(el('div','id',app.id),el('h2','',app.name));
- const status=el('div','status','Checking latest release…');card.append(status);
- const links=el('div','actions');card.append(links);root.append(card);
- try{const result=await request('/api/updates?appId='+encodeURIComponent(app.id));
- if(result.ok){const data=result.data;status.textContent='Latest release: '+data.version+' · '+(data.assets?.length||0)+' installable assets';
- const link=el('a','action','View release');link.href=data.releaseUrl;link.rel='noopener noreferrer';link.target='_blank';links.append(link);}
- else if(result.data?.error==='No published release'){status.textContent='No published release yet';}
- else{status.textContent='Release information currently unavailable';}
- }catch{status.textContent='Could not reach release checker';}
- }));
- }catch{root.replaceChildren(el('p','','Failed to load application registry. Please refresh.'));}
-}
-document.getElementById('refresh').addEventListener('click',show);show();
+let entries=[],activeFilter='all';
+const $=id=>document.getElementById(id);
+function node(tag,cls,text){const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n}
+async function getJSON(url){const r=await fetch(url,{cache:'no-store'});const data=await r.json();return {ok:r.ok,data}}
+function render(){const term=$('search').value.trim().toLowerCase();const matching=entries.filter(e=>(e.name+' '+e.id).toLowerCase().includes(term)&&(activeFilter==='all'||(activeFilter==='released'&&e.release)||(activeFilter==='pending'&&!e.release)));const grid=$('grid');grid.replaceChildren();
+if(!matching.length){grid.append(node('div','empty','No applications match your search.'));return}
+for(const e of matching){const card=node('article','app'),head=node('div','app-head'),symbol=node('div','app-icon',(e.name||'?').slice(0,1).toUpperCase()),nameBox=node('div'),title=node('h3','',e.name),id=node('div','app-id',e.id);nameBox.append(title,id);head.append(symbol,nameBox);const pill=node('span','pill'+(e.release?'':' missing'),e.release?'Published':'Pending');pill.style.marginLeft='auto';head.append(pill);card.append(head);
+let description=e.release?'Latest release: '+e.release.version+'\n'+e.release.assets.length+' installable file(s)':'No published release yet';const middle=node('div','app-middle',description);middle.style.whiteSpace='pre-line';card.append(middle);const footer=node('div','app-footer');
+if(e.release){const detail=node('button','','View downloads');detail.addEventListener('click',()=>showDetails(e));footer.append(detail);const anchor=node('a','','GitHub release ↗');anchor.href=e.release.releaseUrl;anchor.target='_blank';anchor.rel='noopener noreferrer';footer.append(anchor)}
+else{const unavailable=node('button','','Not available');unavailable.disabled=true;footer.append(unavailable)}
+card.append(footer);grid.append(card)}}
+function showDetails(e){$('dialogTitle').textContent=e.name;$('dialogInfo').textContent='Release '+e.release.version+' · '+(e.release.notes||'No release notes available');const links=$('dialogLinks');links.replaceChildren();if(!e.release.assets.length){links.append(node('p','','No APK or EXE attached to this release.'))}
+for(const asset of e.release.assets){if(!/^https:\/\/github\.com\//.test(asset.url))continue;const a=node('a','',asset.name+' ('+(asset.size/1024/1024).toFixed(2)+' MB) ↗');a.href=asset.url;a.target='_blank';a.rel='noopener noreferrer';const p=node('p');p.append(a);links.append(p)}$('details').showModal()}
+async function load(){const top=$('refreshTop');top.disabled=true;top.textContent='Refreshing…';$('lastChecked').textContent='Checking releases…';try{const r=await getJSON('/api/apps');if(!r.ok||!Array.isArray(r.data.apps))throw Error('Registry unavailable');entries=r.data.apps.map(x=>({...x,release:null}));render();await Promise.all(entries.map(async e=>{try{const r=await getJSON('/api/updates?appId='+encodeURIComponent(e.id));if(r.ok&&Array.isArray(r.data.assets)&&typeof r.data.version==='string'){e.release=r.data}}catch{}}));$('countApps').textContent=entries.length;$('countPublished').textContent=entries.filter(x=>x.release).length;$('countAssets').textContent=entries.reduce((n,x)=>n+(x.release?.assets.length||0),0);$('lastChecked').textContent='Updated '+new Date().toLocaleTimeString();render()}catch(e){$('grid').replaceChildren(node('div','empty','Unable to load apps. Please try again.'));$('lastChecked').textContent='Connection issue'}finally{top.disabled=false;top.textContent='↻   Refresh releases'}}
+$('refreshTop').addEventListener('click',load);$('search').addEventListener('input',render);document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>{activeFilter=b.dataset.filter;document.querySelectorAll('[data-filter]').forEach(c=>c.classList.toggle('selected',c===b));render()}));$('closeDialog').addEventListener('click',()=>$('details').close());load();
 </script></body></html>
