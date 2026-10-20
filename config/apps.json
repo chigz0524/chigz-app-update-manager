@@ -14,11 +14,11 @@
       "id": "studio-shot",
       "name": "Studio Shot",
       "repo": "chigz0524/studio-shot-updates"
-    }
+    },
     {
-    "id": "chigz-karaoke",
-    "name": "CHIGZ Karaoke",
-    "repo": "chigz0524/chigz-karaoke-updates"
-}
+      "id": "chigz-karaoke",
+      "name": "CHIGZ Karaoke",
+      "repo": "chigz0524/chigz-karaoke-updates"
+    }
   ]
 }
