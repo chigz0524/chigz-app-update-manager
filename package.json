@@ -1,0 +1,12 @@
+{
+  "name": "chigz-app-update-manager",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Centralized release-check API for CHIGZ Android and Windows apps",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
