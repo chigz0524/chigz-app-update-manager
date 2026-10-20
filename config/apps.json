@@ -1,0 +1,19 @@
+{
+  "apps": [
+    {
+      "id": "personal-brand-studio",
+      "name": "Personal Brand Studio",
+      "repo": "chigz0524/personal-brand-studio-updates"
+    },
+    {
+      "id": "photo-restoration",
+      "name": "Photo Restoration",
+      "repo": "chigz0524/photo-restoration-updates"
+    },
+    {
+      "id": "studio-shot",
+      "name": "Studio Shot",
+      "repo": "chigz0524/studio-shot-updates"
+    }
+  ]
+}
