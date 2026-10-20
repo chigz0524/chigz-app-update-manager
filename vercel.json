@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "rewrites": [
+    {
+      "source": "/api/updates/:appId",
+      "destination": "/api/updates?appId=:appId"
+    }
+  ]
+}
